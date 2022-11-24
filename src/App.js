@@ -1,25 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react"
+import ApiMovie from "./ApiMovie"
+import "./App.css"
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  // Dès qu'on arrive sur la pagge d'acceuil appel fonction qui ramène la liste des fils (1fois)
+
+  useEffect(() => {
+    const loadAllMovies = async () => {
+      // attend qqchose de la fonction getMovies
+      let moviesList = await ApiMovie.getHomeMovies()
+    }
+  })
+  return <div className="App">HELLO WORLD </div>
 }
 
-export default App;
+export default App
