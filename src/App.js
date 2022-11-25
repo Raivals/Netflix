@@ -1,17 +1,30 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import ApiMovie from "./ApiMovie"
 import "./App.css"
+import MovieSection from "./components/MovieSection"
 
 function App() {
-  // Dès qu'on arrive sur la pagge d'acceuil appel fonction qui ramène la liste des fils (1fois)
+  const [moviesList, setMoviesList] = useState([])
 
   useEffect(() => {
     const loadAllMovies = async () => {
-      // attend qqchose de la fonction getMovies
-      let moviesList = await ApiMovie.getHomeMovies()
+      let list = await ApiMovie.getHomeMovies()
+      console.log(list)
+      setMoviesList(list)
     }
-  })
-  return <div className="App">HELLO WORLD </div>
+
+    loadAllMovies()
+  }, [])
+
+  return (
+    <div className="page">
+      <section className="lists">
+        {moviesList.map((item, key) => (
+          <MovieSection key={key} title={item.title} items={item.items} />
+        ))}
+      </section>
+    </div>
+  )
 }
 
 export default App

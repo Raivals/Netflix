@@ -1,15 +1,13 @@
-// Appel API
-
+/* eslint-disable import/no-anonymous-default-export */
 const API_KEY = process.env.REACT_APP_API_KEY
 const API_URL = "https://api.themoviedb.org/3/"
 
 const fetchMovies = async (endpoint) => {
   return await fetch(
-    `${API_URL}${endpoint}&language=fr-FR&api_key=${API_KEY}`,
+    `${API_URL}${endpoint}?language=fr-FR&api_key=${API_KEY}`,
   ).then((response) => response.json())
 }
-// Exporter la fonction qui permet d'avoir la liste des films par catégories
-// eslint-disable-next-line import/no-anonymous-default-export
+
 export default {
   getHomeMovies: async () => {
     return [
